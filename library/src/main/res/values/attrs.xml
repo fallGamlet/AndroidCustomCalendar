@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="cc_monthTextAppearance" format="reference"/>
+    <attr name="cc_weekDayTextAppearance" format="reference"/>
+    <attr name="cc_monthDayTextAppearance" format="reference"/>
+    <attr name="cc_monthDayOtherTextAppearance" format="reference"/>
+    <attr name="cc_monthTextIsVisible" format="boolean|reference"/>
+    <attr name="cc_monthButtonIsVisible" format="boolean|reference"/>
+    <attr name="cc_monthButtonTint" format="color|reference"/>
+    <attr name="cc_monthButtonSize" format="dimension|reference"/>
+    <attr name="cc_monthButtonPadding" format="dimension|reference"/>
+    <attr name="cc_monthButtonMargin" format="dimension|reference"/>
+    <attr name="cc_monthButtonPrevIcon" format="reference"/>
+    <attr name="cc_monthButtonNextIcon" format="reference"/>
+    <attr name="cc_monthTextTint" format="color|reference"/>
+    <attr name="cc_weekDayTextTint" format="color|reference"/>
+    <attr name="cc_monthDayTextTint" format="color|reference"/>
+    <attr name="cc_monthDayOtherTextTint" format="color|reference"/>
+    <attr name="cc_weekHeaderDividerTint" format="color|reference"/>
+    <attr name="cc_weekHeaderHeight" format="dimension|reference"/>
+
+    <declare-styleable name="MonthView">
+        <attr name="android:firstDayOfWeek" />
+        <attr name="cc_monthTextAppearance"/>
+        <attr name="cc_monthTextTint"/>
+        <attr name="cc_monthTextIsVisible"/>
+        <attr name="cc_monthButtonIsVisible"/>
+        <attr name="cc_monthButtonTint"/>
+        <attr name="cc_monthButtonSize"/>
+        <attr name="cc_monthButtonPadding"/>
+        <attr name="cc_monthButtonMargin"/>
+        <attr name="cc_monthButtonPrevIcon"/>
+        <attr name="cc_monthButtonNextIcon"/>
+        <attr name="cc_weekDayTextAppearance"/>
+        <attr name="cc_weekDayTextTint"/>
+        <attr name="cc_weekHeaderDividerTint"/>
+        <attr name="cc_weekHeaderHeight"/>
+        <attr name="cc_monthDayTextAppearance"/>
+        <attr name="cc_monthDayTextTint"/>
+        <attr name="cc_monthDayOtherTextAppearance"/>
+        <attr name="cc_monthDayOtherTextTint"/>
+    </declare-styleable>
+
+    <declare-styleable name="CalendarViewPager">
+        <attr name="android:firstDayOfWeek" />
+        <attr name="cc_monthTextAppearance"/>
+        <attr name="cc_monthTextTint"/>
+        <attr name="cc_monthTextIsVisible"/>
+        <attr name="cc_monthButtonIsVisible"/>
+        <attr name="cc_monthButtonTint"/>
+        <attr name="cc_monthButtonSize"/>
+        <attr name="cc_monthButtonPadding"/>
+        <attr name="cc_monthButtonMargin"/>
+        <attr name="cc_monthButtonPrevIcon"/>
+        <attr name="cc_monthButtonNextIcon"/>
+        <attr name="cc_weekDayTextAppearance"/>
+        <attr name="cc_weekDayTextTint"/>
+        <attr name="cc_weekHeaderDividerTint"/>
+        <attr name="cc_weekHeaderHeight"/>
+        <attr name="cc_monthDayTextAppearance"/>
+        <attr name="cc_monthDayTextTint"/>
+        <attr name="cc_monthDayOtherTextAppearance"/>
+        <attr name="cc_monthDayOtherTextTint"/>
+    </declare-styleable>
+
+</resources>

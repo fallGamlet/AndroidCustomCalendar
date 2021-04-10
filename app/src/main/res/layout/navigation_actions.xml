@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/exampleMonthViewButton1"
+            style="@style/Theme.CustomCalendar.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_month_view_1"
+            />
+
+        <Button
+            android:id="@+id/exampleMonthViewButton2"
+            style="@style/Theme.CustomCalendar.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_month_view_2"
+            />
+
+        <Button
+            android:id="@+id/exampleCalendarViewPagerButton1"
+            style="@style/Theme.CustomCalendar.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_calendar_view_pager_1"
+            />
+
+        <Button
+            android:id="@+id/exampleCalendarViewPagerButton2"
+            style="@style/Theme.CustomCalendar.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_calendar_view_pager_2"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

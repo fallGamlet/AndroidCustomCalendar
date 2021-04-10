@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CustomCalendar</string>
+    <string name="example_month_view_1">MonthView example 1</string>
+    <string name="example_month_view_2">MonthView example 2</string>
+    <string name="example_calendar_view_pager_1">CalendarViewPager example 1</string>
+    <string name="example_calendar_view_pager_2">CalendarViewPager example 2</string>
+</resources>
