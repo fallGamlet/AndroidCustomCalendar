@@ -1,6 +1,7 @@
 package com.fallgamlet.customcalendar
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -13,8 +14,19 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(false)
+            setHomeButtonEnabled(true)
+        }
+
         val fragment = supportFragmentManager.findFragmentById(R.id.content)
         if (fragment == null) showFragment(NavigationFragment(), false)
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val hasBackStack = supportFragmentManager.backStackEntryCount > 0
+            supportActionBar?.setDisplayHomeAsUpEnabled(hasBackStack)
+        }
     }
 
     override fun onNavigationActionActivated(action: String) {
@@ -40,5 +52,15 @@ class MainActivity : AppCompatActivity(),
                 if (addToBackStack) it.addToBackStack(fragment.javaClass.simpleName)
             }
             .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
