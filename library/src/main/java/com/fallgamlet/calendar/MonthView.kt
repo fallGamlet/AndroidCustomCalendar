@@ -221,7 +221,6 @@ class MonthView: FrameLayout {
                 this.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             }
         }
-        updateOnDayClickListeners()
     }
 
     private fun getWeekExtendedMonthDays(): List<YearMonthDay> {
@@ -244,7 +243,7 @@ class MonthView: FrameLayout {
 
     private fun createDayViewHolder(): DayViewHolder {
         val rootView = FrameLayout(context)
-            .apply { layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER) }
+            .apply { layoutParams = LayoutParams(0, 0) }
         val titleView = TextView(context).apply {
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER)
             gravity = Gravity.CENTER
@@ -315,6 +314,7 @@ class MonthView: FrameLayout {
                 text = day.day.toString()
             }
         }
+        updateOnDayClickListeners()
     }
 
     private fun setTextAppearance(textView: TextView, textAppearanceResId: Int) {
