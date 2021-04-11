@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity(),
         return when (action) {
             NavigationIds.MONTH_VIEW_EXAMPLE_1 -> MonthViewExample1Fragment()
             NavigationIds.MONTH_VIEW_EXAMPLE_2 -> MonthViewExample2Fragment()
-            NavigationIds.CALENDAR_VIEW_PAGER_1 -> CalendarVeiwPagerExample1Fragment()
-            NavigationIds.CALENDAR_VIEW_PAGER_2 -> CalendarVeiwPagerExample2Fragment()
+            NavigationIds.CALENDAR_VIEW_PAGER_1 -> CalendarViewPagerExample1Fragment()
+            NavigationIds.CALENDAR_VIEW_PAGER_2 -> CalendarViewPagerExample2Fragment()
             else -> throw IllegalArgumentException("wrong action ID")
         }
     }

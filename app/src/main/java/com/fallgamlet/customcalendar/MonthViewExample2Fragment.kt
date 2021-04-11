@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.fallgamlet.calendar.MonthView
-import com.fallgamlet.calendar.YearMonthDay
+import com.fallgamlet.calendar.YearMonth
 import com.fallgamlet.calendar.monthsBetween
 
 class MonthViewExample2Fragment: Fragment(R.layout.example_month_view_2) {
 
     private lateinit var monthView: MonthView
-    private lateinit var defaultMonth: YearMonthDay
+    private lateinit var defaultMonth: YearMonth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
