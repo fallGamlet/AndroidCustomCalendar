@@ -9,15 +9,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_base"
-        app:cardCornerRadius="@dimen/space_base"
-        app:contentPadding="8dp">
+        app:cardCornerRadius="@dimen/space_base">
 
         <com.fallgamlet.calendar.MonthView
             android:id="@+id/monthView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             app:cc_monthButtonTint="@color/button_color_list"
             app:cc_monthButtonSize="48dp"
             app:cc_monthButtonPadding="4dp"
