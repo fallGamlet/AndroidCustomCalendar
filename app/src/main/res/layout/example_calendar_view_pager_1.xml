@@ -27,7 +27,7 @@
             app:cc_weekDayTextTint="#BA5961"
             app:cc_weekHeaderDividerTint="#50E4E100"
             app:cc_weekHeaderHeight="8dp"
-            app:cc_monthDayTextAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:cc_monthDayTextAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:cc_monthDayTextTint="#009688"
             app:cc_monthDayOtherTextAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:cc_monthDayOtherTextTint="#8F6C00"
