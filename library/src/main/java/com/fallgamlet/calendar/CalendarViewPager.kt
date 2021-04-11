@@ -108,17 +108,21 @@ open class CalendarViewPager : ViewPager {
 
     override fun setAdapter(adapter: PagerAdapter?) {
         super.setAdapter(adapter)
-        calendarPagerAdapter?.createPageWrapper = createPageWrapper
+        calendarPagerAdapter?.pageWrapperCreator = pageWrapperCreator
     }
 
-    var createPageWrapper: ((parent: ViewGroup, month: YearMonthDay) -> ViewGroup)? = null
+    var pageWrapperCreator: ((parent: ViewGroup, month: YearMonth) -> WrapperViewHolder)? = null
         set(value) {
             field = value
-            calendarPagerAdapter?.createPageWrapper = value
+            calendarPagerAdapter?.pageWrapperCreator = value
         }
 
     fun setRange(minMonth: YearMonth, maxMonth: YearMonth) {
-        calendarPagerAdapter?.setRange(minMonth, maxMonth)
+        calendarPagerAdapter?.also {
+            val month = it.getMonth(currentItem)
+            it.setRange(minMonth, maxMonth)
+            setCurrentItem(month, false)
+        }
     }
 
     fun setOnChangeListener(listener: ((monthView: MonthView) -> Unit)?) {

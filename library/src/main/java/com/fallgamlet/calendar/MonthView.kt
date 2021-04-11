@@ -32,7 +32,7 @@ class MonthView: FrameLayout {
         private set
     var monthDayViews: Map<YearMonthDay, DayViewHolder> = emptyMap()
         private set
-    var currentMonth: YearMonthDay = Calendar.getInstance().toYearMonthDay()
+    var currentMonth: YearMonth = Calendar.getInstance().toYearMonth()
         private set
     var config = MonthViewConfig()
         private set
@@ -67,7 +67,7 @@ class MonthView: FrameLayout {
 
     private fun initAttrs(attrs: AttributeSet?) {
         val calendar = Calendar.getInstance()
-        currentMonth = calendar.toYearMonthDay()
+        currentMonth = calendar.toYearMonth()
         var config = MonthViewConfigHelper.defaultConfig(calendar, resources)
         attrs?.apply {
             val typedArray = context.obtainStyledAttributes(this, R.styleable.MonthView)
@@ -115,15 +115,14 @@ class MonthView: FrameLayout {
         )
     }
 
-    fun setMonth(month: YearMonthDay) {
-        val isMonthChanged = !currentMonth.isYearMonthEquals(month)
+    fun setMonth(month: YearMonth) {
+        val isMonthChanged = month != currentMonth
         if (isMonthChanged || weekDayViews.isEmpty()) {
             currentMonth = month
             recreateViews()
             refresh()
-        } else if (currentMonth.day != month.day) {
-            refresh()
         }
+        refresh()
     }
 
     fun setConfig(config: MonthViewConfig) {
@@ -303,7 +302,7 @@ class MonthView: FrameLayout {
     }
 
     private fun updateMonthDaysStyles() {
-        val currentMonth = this.currentMonth
+        val currentMonth = this.currentMonth.toYearMonthDay()
         monthDayViews.forEach {
             val day = it.key
             val holder  = it.value

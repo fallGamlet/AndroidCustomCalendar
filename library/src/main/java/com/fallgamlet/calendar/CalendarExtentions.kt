@@ -8,6 +8,16 @@ fun Calendar.toYearMonthDay() =
 fun Calendar.toYearMonth() =
     YearMonth(get(Calendar.YEAR), get(Calendar.MONTH))
 
+fun YearMonth.toCalendar(firstDayOfWeek: Int? = null) = Calendar.getInstance().also {
+    it.set(Calendar.YEAR, year)
+    it.set(Calendar.MONTH, month)
+    it.set(Calendar.DAY_OF_MONTH, it.getActualMinimum(Calendar.DAY_OF_MONTH))
+    it.clear(Calendar.HOUR_OF_DAY)
+    it.clear(Calendar.MINUTE)
+    it.clear(Calendar.MILLISECOND)
+    if (firstDayOfWeek != null) it.firstDayOfWeek = firstDayOfWeek
+}
+
 fun YearMonthDay.toCalendar(firstDayOfWeek: Int? = null) = Calendar.getInstance().also {
     val isCorrectDay = day in (it.getActualMinimum(Calendar.DAY_OF_MONTH)..it.getActualMaximum(Calendar.DAY_OF_MONTH))
     it.set(Calendar.YEAR, year)

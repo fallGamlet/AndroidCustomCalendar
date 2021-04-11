@@ -11,7 +11,7 @@ open class CalendarPagerAdapter(
     config: MonthViewConfig? = null,
     minMonth: YearMonth? = null,
     maxMonth: YearMonth? = null,
-    var createPageWrapper: ((parent: ViewGroup, month: YearMonthDay) -> ViewGroup)? = null,
+    var pageWrapperCreator: ((parent: ViewGroup, month: YearMonth) -> WrapperViewHolder)? = null,
     var onChangeListener: ((monthView: MonthView) -> Unit)? = null,
     onPrevClickListener: (() -> Unit)? = null,
     onNextClickListener: (() -> Unit)? = null,
@@ -72,7 +72,14 @@ open class CalendarPagerAdapter(
     private fun getCachedViews(): List<MonthView> {
         val views = viewContainer ?: return emptyList()
         return (0 until views.childCount)
-            .mapNotNull { i -> views.getChildAt(i) as? MonthView }
+            .mapNotNull { i ->
+                val view = views.getChildAt(i)
+                when {
+                    view is MonthView -> view
+                    view.tag is Int -> view.findViewById(view.tag as Int)
+                    else -> null
+                }
+            }
     }
 
     fun setConfig(config: MonthViewConfig) {
@@ -85,7 +92,13 @@ open class CalendarPagerAdapter(
         this.minMonth = minMonth
         this.maxMonth = if (isValid) maxMonth else minMonth
         monthCount = minMonth.monthsBetween(maxMonth)
-        notifyCalendarChanged()
+        notifyDataSetChanged()
+//        notifyCalendarChanged()
+    }
+
+    override fun notifyDataSetChanged() {
+        monthsMap.clear()
+        super.notifyDataSetChanged()
     }
 
     fun notifyCalendarChanged() {
@@ -96,16 +109,22 @@ open class CalendarPagerAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         viewContainer = container
-        val month = getMonth(position).toYearMonthDay()
-        val view = createMonthView(container.context)
-        val viewWrapper = createPageWrapper?.invoke(container, month)
-            ?.also { it.addView(view) }
-            ?: view
+        val monthViewId = View.generateViewId()
+        val month = getMonth(position)
+        val monthView = createMonthView(container.context)
+        monthView.id = monthViewId
+        val viewWrapper = pageWrapperCreator?.invoke(container, month)
+            ?.let {
+                it.contentView.addView(monthView)
+                it.root
+            }
+            ?: monthView
+        viewWrapper.tag = monthViewId
         container.addView(viewWrapper)
-        view.setConfig(config)
-        view.setMonth(month)
-        setListenersIntoMonthView(view)
-        return view
+        monthView.setConfig(config)
+        monthView.setMonth(month)
+        setListenersIntoMonthView(monthView)
+        return viewWrapper
     }
 
     private fun createMonthView(context: Context): MonthView {
@@ -117,7 +136,7 @@ open class CalendarPagerAdapter(
         }
     }
 
-    private fun getMonth(position: Int): YearMonth {
+    fun getMonth(position: Int): YearMonth {
         return monthsMap.getOrPut(position) { minMonth.plusMonth(position) }
     }
 
