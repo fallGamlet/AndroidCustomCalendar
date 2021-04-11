@@ -12,7 +12,7 @@ open class CalendarPagerAdapter(
     minMonth: YearMonth? = null,
     maxMonth: YearMonth? = null,
     var pageWrapperCreator: ((parent: ViewGroup, month: YearMonth) -> WrapperViewHolder)? = null,
-    var onChangeListener: ((monthView: MonthView) -> Unit)? = null,
+    onChangeListener: ((monthView: MonthView) -> Unit)? = null,
     onPrevClickListener: (() -> Unit)? = null,
     onNextClickListener: (() -> Unit)? = null,
     onDayClickListener: ((day: YearMonthDay, holder: DayViewHolder) -> Unit)? = null
@@ -27,6 +27,12 @@ open class CalendarPagerAdapter(
         private set
     lateinit var maxMonth: YearMonth
         private set
+
+    var onChangeListener: ((monthView: MonthView) -> Unit)? = onChangeListener
+        set(value) {
+            field = value
+            updateListeners()
+        }
 
     var onPrevClickListener: (() -> Unit)? = onPrevClickListener
         set(value) {
@@ -102,7 +108,9 @@ open class CalendarPagerAdapter(
     }
 
     fun notifyCalendarChanged() {
-        getCachedViews().forEach(MonthView::refresh)
+        getCachedViews()
+            .onEach(::setListenersIntoMonthView)
+            .onEach(MonthView::refresh)
     }
 
     override fun getCount(): Int = monthCount
@@ -122,8 +130,8 @@ open class CalendarPagerAdapter(
         viewWrapper.tag = monthViewId
         container.addView(viewWrapper)
         monthView.setConfig(config)
-        monthView.setMonth(month)
         setListenersIntoMonthView(monthView)
+        monthView.setMonth(month)
         return viewWrapper
     }
 
