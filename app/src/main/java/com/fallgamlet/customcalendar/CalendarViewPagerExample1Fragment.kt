@@ -39,6 +39,9 @@ class CalendarViewPagerExample1Fragment: Fragment(R.layout.example_calendar_view
         calendarView.setOnChangeListener(::handleMonthViewChanges)
         calendarView.setOnDayClickListener(::handleOnDayClicked)
         calendarView.pageWrapperCreator = ::createPageWrapView
+        calendarView.setConfig(calendarView.config.copy(
+            buttonTintList = colorStateListWithAlphaForPressAndDisabled(calendarView.config.buttonTintList.defaultColor)
+        ))
         calendarView.setRange(minMonth, maxMonth)
     }
 
@@ -67,7 +70,7 @@ class CalendarViewPagerExample1Fragment: Fragment(R.layout.example_calendar_view
     private fun handleOnDayClicked(day: YearMonthDay, holder: DayViewHolder) {
         pushLog("MonthView pressed on day $day")
         if (!activatedDays.remove(day)) activatedDays.add(day)
-        handleMonthDay(day, holder)
+        calendarView.notifyCalendarChanged()
     }
 
     private fun createPageWrapView(parent: ViewGroup, month: YearMonth): WrapperViewHolder {
