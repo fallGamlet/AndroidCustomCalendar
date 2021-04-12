@@ -128,9 +128,9 @@ open class CalendarPagerAdapter(
             ?: monthView
         viewWrapper.tag = monthViewId
         container.addView(viewWrapper)
-        monthView.setConfig(config)
         monthView.setMonth(month)
         setListenersIntoMonthView(monthView)
+        monthView.setConfig(config)
         return viewWrapper
     }
 
