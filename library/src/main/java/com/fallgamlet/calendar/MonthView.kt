@@ -327,7 +327,6 @@ class MonthView: FrameLayout {
     }
 
     private fun updateOnClickListener(view: View, listener: (()->Unit)? = null) {
-        view.isEnabled = listener != null
         if (listener != null) view.setOnClickListener { listener.invoke() }
         else view.setOnClickListener(null)
     }
