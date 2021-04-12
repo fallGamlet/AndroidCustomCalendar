@@ -67,12 +67,12 @@ open class CalendarPagerAdapter(
     }
 
     private fun setListenersIntoMonthView(monthView: MonthView) {
-        val isMinMonth = monthView.currentMonth.monthsBetween(minMonth) == 0
-        val isMaxMonth = monthView.currentMonth.monthsBetween(maxMonth) == 0
-        monthView.onPrevClickListener = if (isMinMonth) null else onPrevClickListener
-        monthView.onNextClickListener = if (isMaxMonth) null else onNextClickListener
+        monthView.onPrevClickListener = onPrevClickListener
+        monthView.onNextClickListener = onNextClickListener
         monthView.onChangeListener = onChangeListener
         monthView.onDayClickListener = onDayClickListener
+        monthView.prevMonthButton.isEnabled = monthView.currentMonth.monthsBetween(minMonth) < 0
+        monthView.nextMonthButton.isEnabled = monthView.currentMonth.monthsBetween(maxMonth) > 0
     }
 
     private fun getCachedViews(): List<MonthView> {
@@ -97,9 +97,8 @@ open class CalendarPagerAdapter(
         val isValid = minMonth.monthsBetween(maxMonth) >= 0
         this.minMonth = minMonth
         this.maxMonth = if (isValid) maxMonth else minMonth
-        monthCount = minMonth.monthsBetween(maxMonth)
+        monthCount = minMonth.monthsBetween(maxMonth) + 1
         notifyDataSetChanged()
-//        notifyCalendarChanged()
     }
 
     override fun notifyDataSetChanged() {
@@ -130,8 +129,8 @@ open class CalendarPagerAdapter(
         viewWrapper.tag = monthViewId
         container.addView(viewWrapper)
         monthView.setConfig(config)
-        setListenersIntoMonthView(monthView)
         monthView.setMonth(month)
+        setListenersIntoMonthView(monthView)
         return viewWrapper
     }
 
