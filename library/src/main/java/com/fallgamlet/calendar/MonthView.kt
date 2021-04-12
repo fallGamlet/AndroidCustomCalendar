@@ -205,7 +205,11 @@ class MonthView: FrameLayout {
         weekDayViews.values.forEach {
             gridLayout.addView(it.rootView)
             (it.rootView.layoutParams as GridLayout.LayoutParams)
-                .apply { this.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f) }
+                .apply {
+                    this.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                    this.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    this.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                }
         }
     }
 
