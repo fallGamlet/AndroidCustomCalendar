@@ -133,6 +133,10 @@ open class CalendarViewPager : ViewPager {
         calendarPagerAdapter?.onDayClickListener = listener
     }
 
-    private val calendarPagerAdapter: CalendarPagerAdapter?
+    val calendarPagerAdapter: CalendarPagerAdapter?
         get() = this.adapter as? CalendarPagerAdapter
+
+    fun notifyCalendarChanged() {
+        calendarPagerAdapter?.notifyCalendarChanged()
+    }
 }
